@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Booking System</title>
+    <link rel="stylesheet" href="#">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .turf-card {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 550px;
+            vertical-align: top;
+        }
+        .image-container {
+            position: relative;
+        }
+        .close-symbol {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: red;
+        }
+        .slots-container {
+            margin-top: 10px;
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: left;
+        }
+        button {
+            width: 50px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Turf Booking System</h1>
+    <ul>
+        {% for turf in turfs %}
+        <li class="turf-card">
+            <div class="image-container">
+                <img src="{{ turf.image_file }}" alt="{{ turf.turf_name }}" width="100%">
+                <span class="close-symbol">X</span>
+            </div>
+            <div class="content">
+                <h2>{{ turf.turf_name }}</h2>
+                <h3>{{ turf.turf_id }}</h3>
+                <h3>PRICE: ${{ turf.price }}</h3>
+                <p>{{ turf.description }}</p>
+                <h4>Select a Date:</h4>
+                <div id="date-options-{{ turf.turf_id }}">
+                    
+                </div> <!-- Container for date options -->
+                <div id="slots-{{ turf.turf_id }}" class="slots-container"></div> <!-- Container for slots -->
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <script>
+        // Set the available dates and create radio buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded and parsed');
+            const today = new Date();
+            const dateOptions = [];
+            for (let i = 0; i < 5; i++) {
+                const nextDate = new Date();
+                nextDate.setDate(today.getDate() + i);
+                dateOptions.push(nextDate.toISOString().split('T')[0]);
+            }
+            // Log the generated date options after they have been populate
+            console.log('Generated Date Options:', dateOptions);
+            const turfCards = document.querySelectorAll('.turf-card');
+            turfCards.forEach(card => {
+                const turfId = card.querySelector('.content h3').innerText; // Assuming turf name is unique
+                console.log('Turf ID:', turfId); // Log turfId after it has been defined
+                const dateContainer = document.getElementById(`date-options-${turfId}`);
+                dateOptions.forEach(date => {
+                    const radioHtml = `
+                    <label class='name'> <!-- Corrected from <lable> to <label> -->
+                        <input type="radio" name="date-${turfId}" value="${date}" onchange="fetchSlot(this, '${turfId}')">
+                        <span class='name'>${date}</span>
+                    </label>`;
+                    dateContainer.innerHTML += radioHtml; // Append the radio button to the container
+                    });
+                });
+            });
+
+        function fetchSlot(radioElement, turfId) {
+            const date = radioElement.value; // Get the selected date
+
+            console.log(`Fetching slots for Turf ID: ${turfId} on Date: ${date}`); // Debugging line
+
+            if (date) {
+                fetch(`/${turfId}/${date}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(slots_data => {
+                        console.log(slots_data); 
+                        displaySlots(slots_data, turfId, date); // Call function to display slots
+                    })
+                    .catch(error => {
+                        console.error('Error fetching slots:', error);
+                    });
+            } else {
+                console.warn('No date selected for Turf ID:', turfId); // Debugging line
+            }
+        }
+        function displaySlots(slots_data, turfId, date) 
+        {
+            const slotsContainer = document.getElementById(`slots-${turfId}`);
+            slotsContainer.innerHTML = ''; // Clear previous slots
+            if (slots_data && slots_data.length > 0) {
+                let slotHtml = '<h3>Available Slots:</h3><ul>';
+                    slots_data.forEach((slot, index) => {
+                        slotHtml +=
+                         `<li> 
+                            <button ${slot.is_booked ? 'disabled' : ''} onclick="bookSlot('${date}', ${turfId}, ${index})">
+                                ${(slot.slot_number)+1}</button>
+                                </li>`;
+                            });
+                            slotHtml += '</ul>';
+                            slotsContainer.innerHTML = slotHtml; // Update the container with new slots
+                            } else {
+                                slotsContainer.innerHTML = '<p>No slots available for this date.</p>';
+                            }
+                        }
+        
+
+        function bookSlot(turfId, date, time) {
+            // Logic to book the slot
+            console.log(`Booking Turf ID: ${turfId} on Date: ${date} at Time: ${time}`);
+            fetch(`/book`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ turfId, date, time })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(`Booking successful: ${data.message}`); // Notify user of successful booking
+            })
+            .catch(error => {
+                console.error('Error booking slot:', error);
+                alert('There was an error booking the slot. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+button {
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 25px;
+    background-color: #2ba8fb;
+    color: #ffffff;
+    font-weight: Bold;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+.turf-card {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 550px;
+    vertical-align: top;
+}
+.image-container {
+    position: relative;
+}
+.close-symbol {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+}
+.slots-container {
+    margin-top: 10px;
+}
+/* From Uiverse.io by Yaya12085 */ 
+.data-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #f7f5f5;
+    box-sizing: border-box;
+    box-shadow: 10 10 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 5px;
+    width: 500px;
+    font-size: 12px;
+}
+.data-container .name {
+    flex: 1 1 auto;
+    text-align: center;
+}
+.data-container .name input {
+    display: none;
+}
+.data-container .name .names {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+.data-container .name input:checked + .names {
+    background-color: #3484df;
+    font-weight: 600;
+}
+.slots-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #f7f5f5;
+    box-sizing: border-box;
+    box-shadow: 10 10 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 5px;
+    width: 500px;
+    font-size: 12px;
+}
+.slots-container .namesc {
+    flex: 1 1 auto;
+    width: 40px;
+    text-align: center;
+}
+.slots-container .namesc input {
+    display: none;
+}
+.slots-container .namesc .namesc {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+.slots-container .namesc input:disabled+ .namesc {
+    background-color: #0fad1c;
+    font-weight: 600;
+
+}
+.slots-container .namesc input+ .namesc {
+    background-color: #a49cf3;
+    font-weight: 600;
+}
+.slots-container .namesc input:checked + .namesc {
+    background-color: #89baf1;
+    font-weight: 600;
+}
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: left;
+}
+button {
+    width: 50px;
+    margin-top: 5px;
+}
+#paytype{
+    padding-left: 10%;
+    justify-content: center;
+    display: none;
+}
+#payqr{
+    justify-content: center;
+    display: none;
+}
+#qrCode{
+    border-left: 60%;
+}
+#bookbutton{
+    display: none;
+}

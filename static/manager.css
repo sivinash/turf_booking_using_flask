@@ -1,0 +1,342 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 2px;
+    color: white;
+    background-color: #f4f4f4;
+    background-image: url('3dd.jpg'); /* Ensure the path is correct */
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    margin: 0; /* Remove default margin */
+}
+.logo{
+    color: #f0f5fa;
+    font-size: 30px;
+    flex: 1;
+    font: bold;
+    width: 80%;
+    padding-left: 20px;
+
+}
+header {
+
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0; 
+    padding: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    z-index: 1000;
+}
+main {
+    padding-top: 130px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+}
+header nav {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    gap: 20px; 
+}
+#logo{
+    flex: 1;
+    font: 50px bold;
+    width: 80%;
+    padding-left: 20px;
+
+}
+#maindiv{
+    flex: 1;
+    overflow: scroll;
+    padding-left: 10px;
+
+}
+#pdb{
+    padding-right: 70px;
+}
+#pd{
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    position: fixed; 
+    top: 20%; 
+    left: 80%; 
+    right: 0; 
+    border: 2px solid black;
+}
+#profileman {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding for top/bottom and left/right */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+#profileman:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
+#profileman:active {
+    background-color: #004085; /* Even darker shade when active */
+    transform: translateY(1px); /* Slightly move down when clicked */
+}
+#pdimage{
+    border-radius: 100%;
+    height: 20%;
+    
+}
+main{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+}
+#maindiv{
+    flex: 1;
+    overflow: scroll;
+    padding-left: 10px;
+
+}
+.turf-card {
+    border: 1px solid #f5f2f2;
+    margin: 10px;
+    border-radius: 25px;
+    width: 300px;
+    height: 300px;
+    z-index:  "";
+    overflow: hidden;              
+    display: flex;
+    flex-direction: column;
+    
+}
+.image_con {
+    width: 100%;
+    height: 70%;
+    background-color: #0056b3;
+    position: relative;
+}
+.content {
+    width: 100%;
+    height: 25%;
+    padding-left: 10px;
+}
+.image-con img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+}
+.close-symbol {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+}
+
+.slots-container {
+    margin-top: 10px;
+}
+/* From Uiverse.io by Yaya12085 */ 
+.data-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #f7f5f5;
+    box-sizing: border-box;
+    box-shadow: 10 10 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 1px;
+    width: 100%;
+    font-size: 14px;
+}
+.data-container .name {
+    flex: 1 1 auto;
+    text-align: center;
+}
+.data-container .name input {
+    display: none;
+}
+.data-container .name .names {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+.data-container .name input:checked + .names {
+    background-color: #3484df;
+    font-weight: 600;
+}
+.slots-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #f7f5f5;
+    box-sizing: border-box;
+    box-shadow: 10 10 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 5px;
+    width: 100%;
+    font-size: 12px;
+}
+.slots-container .namesc {
+    flex: 1 1 auto;
+    width: 65px;
+    text-align: center;
+}
+.slots-container .namesc input {
+    display: none;
+}
+.slots-container .namesc .namesc {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+.slots-container .namesc input:disabled+ .namesc {
+    background-color: #0fad1c;
+    font-weight: 600;
+
+}
+.slots-container .namesc input+ .namesc {
+    background-color: #a49cf3;
+    font-weight: 600;
+}
+.slots-container .namesc input:checked + .namesc {
+    background-color: #89baf1;
+    font-weight: 600;
+}
+#bookbutton{
+    display: none;
+}
+
+.buttoncl {
+    --color: #0077ff;
+    padding: 2px;
+    font-family: inherit;
+    display: inline-block;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid black;
+    border-radius: 6px;
+    position: relative;
+    background-color: transparent;
+  }
+  
+  .buttoncl::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 180px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .buttoncl:hover {
+    color: white;
+  }
+  
+  .buttoncl:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+  }
+  
+  .buttoncl:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+  .Btn {    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: RGB(29, 185, 84);
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 18px;
+  }
+  
+  .sign svg path {
+    fill: black;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: black;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: 0.3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: 0.3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px, 2px);
+  }
+  

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like Button with Form</title>
+    <style>
+
+        .like-button {
+            color: pink;
+            background-color: red;
+            border: none;
+            width: 10px;;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .like-button:hover {
+            background-color: none;
+        }
+
+        .heart {
+            margin-right: 0px;
+            font-size: 25px;
+            transition: transform 0.6s;
+        }
+
+        .liked .heart {
+            color: red;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <form class="like-form" action="#" method="POST" >
+        <button type="button" class="like-button">
+            <span class="heart">&#10084;</span>
+        </button>
+    </form>
+
+    <script>
+        const likeButton = document.querySelector('.like-button');
+        likeButton.addEventListener('click', () => {
+            likeButton.classList.toggle('liked');
+            if (likeButton.classList.contains('liked')) {
+                likeButton.innerHTML = '<span class="heart">&#10084;</span> ';
+            } else {
+                likeButton.innerHTML = '<span class="heart">&#10084;</span> ';
+            }
+            // Optionally, you can submit the form here if needed
+            // document.querySelector('.like-form').submit();
+        });
+    </script>
+</body>
+</html>

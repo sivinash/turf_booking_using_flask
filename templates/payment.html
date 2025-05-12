@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th {
+                display: none; /* Hide the header on small screens */
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+            }
+
+            td {
+                text-align: right;
+                position: relative;
+                padding-left: 50%; /* Space for the label */
+            }
+
+            td::before {
+                content: attr(data-label); /* Use data-label for the header */
+                position: absolute;
+                left: 10px;
+                width: calc(50% - 20px);
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>turf_id</th>
+                <th>turf_name</th>
+                <th>user_name</th>
+                <th>phone</th>
+                <th>email_id</th>
+                <th>paytype</th>
+                <th>amount</th>
+                <th>booked_dates</th>
+                <th>booked_slots</th>
+                <th>proof</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pay in pay %}
+            <tr>
+                <td data-label="turf_id">{{ pay.turf_id }}</td>
+                {% for tf in turf %}
+                    {% if tf.turf_id == pay.turf_id %}
+                        <td data-label="turf_name">{{ tf.turf_name }}</td>
+                    {% endif %}
+                {% endfor %}
+                {% for user in users %}
+                    {% if user.id == pay.user_id %}
+                        <td data-label="user_name">{{ user.username }}</td>
+                        <td data-label="phone">{{ user.phone }}</td>
+                        <td data-label="email_id">{{ user.email }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td data-label="paytype">{{ pay.payment_method }}</td>
+                <td data-label="amount">{{ pay.amount }}</td>
+                <td data-label="booked_dates">{{ pay.date }}</td>
+                <td data-label="booked_slots">{{ pay.slots }}</td>
+                <td>
+                    <a href="{{ pay.payment_proof }}" download>Download Proof</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+pymysql
+Flask-Mail
+geopy
+Werkzeug
+qrcode[pil]
+python-dotenv

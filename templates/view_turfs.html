@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Booking System</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='view.css')}}">
+</head>
+<body>
+    <h1>Turf Booking System</h1>
+    <ul>
+        {% for turf in turfs %}
+        <li class="turf-card">
+            <div class="image-container">
+                <img src="{{ turf.image_file }}" alt="{{ turf.turf_name }}" width="100%">
+                <span class="close-symbol">X</span>
+            </div>
+            <div class="content">
+                <h2>{{ turf.turf_name }}</h2>
+                <h3>{{ turf.turf_id }}</h3>
+                <h3>PRICE: ${{ turf.price }}</h3>
+                <p>{{ turf.description }}</p>
+                <h4>Select a Date:</h4>
+                <div id="date-options-{{ turf.turf_id }}" class="data-container">
+                    
+                </div> <!-- Container for date options -->
+                <div id="slots-{{ turf.turf_id }}" class="slots-container"></div> <!-- Container for slots -->
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <script src="{{ url_for('static', filename='view.js') }}"></script>
+</body>
+</html>

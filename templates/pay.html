@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Booking System</title>
+    <link rel="stylesheet" href="#">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .turf-card {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 550px;
+            vertical-align: top;
+        }
+        .image-container {
+            position: relative;
+        }
+        .close-symbol {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: red;
+        }
+        .slots-container {
+            margin-top: 10px;
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: left;
+        }
+        button {
+            width: 50px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Turf Booking System</h1>
+    <ul>
+        {% for turf in turfs %}
+        <li class="turf-card">
+            <div class="image-container">
+                <img src="{{ turf.image_file }}" alt="{{ turf.turf_name }}" width="100%">
+                <span class="close-symbol">X</span>
+            </div>
+            <div class="content">
+                <h2>{{ turf.turf_name }}</h2>
+                <p>ID: {{ turf.turf_id }}</p>
+                <h3>PRICE: ${{ turf.price }}</h3>
+                <p>{{ turf.description }}</p>
+                <h4>Select a Date:</h4>
+                <div id="date-options-{{ turf.turf_id }}"></div> <!-- Container for date options -->
+                <div id="slots-{{ turf.turf_id }}" class="slots-container"></div> <!-- Container for slots -->
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <script>
+        // Set the available dates and create radio buttons
+        
+    </script>
+</body>
+</html>

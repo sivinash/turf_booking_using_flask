@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 class="logo">TURF BOOKING CART</h1>
+            <br><br><br><br><br>
+            <button id="profile" aria-label="Profile" onclick="profile()"><span>&#128100;</span> profile</button>
+        </nav>
+        <hr>
+    </header>
+    
+    <main>
+      <h1 style="display: none;" id="user_id">{{user_id}}</h1>
+        <div id="maindiv" style="padding-left: 20% ;">
+          <h1 style="color:aliceblue;padding: right 10px;" >LIKES</h1>
+          <ul>
+              {% for turf in turfs %}
+              <li class="turf-card"  >
+                  <div class="image_con">
+                      <img src="static/turf.avif" alt="{{ turf.turf_name }}" width="100%" height="100%" >
+                      <span class="close-symbol" id="clbt"  style="display: none;">X</span>
+                      <div id="ratingstar{{turf.turf_id}}" class="ratingstar"></div>  
+                      <div id="liked{{turf.turf_id}}" class="likes"></div>
+                  <div class="content">
+                       <div id="liked{{turf.turf_id}}" class="likes"></div>
+                      <h2>{{ turf.turf_name }}</h2>
+                      <h3 class="turfid" style="display: none;">{{ turf.turf_id }}</h3>
+                      <h4 >Advance price : {{ turf.adv_price }}₹</h4>
+                      <h4 >Full_price : {{turf.price}}₹</h4>
+                      <h4 id="advance" style="display: none;">{{ turf.adv_price }}</h4>
+                      <h4 id="full" style="display: none;">{{turf.price}}</h4>
+                      <p style="display: none;">{{ turf.description }}</p>
+                      <h4>Select a Date:</h4>
+                      <h2 id="manager"style="display: none;">{{turf.manager_id}}</h2>
+                      <div id="date-options-{{ turf.turf_id }}" class="data-container">
+                          
+                      </div> <!-- Container for date options -->
+                      <div id="slots-{{ turf.turf_id }}" class="slots-container"></div> <!-- Container for slots -->
+                      <div id="paytype-{{ turf.turf_id }}"  class="paytype-container"></div>
+                  <div id="review"> 
+                    <h1>reviews</h1>
+                    <h1>hii</h1>
+                    <div id="showreviews">
+                      {% for review in reviews %}
+                            {% if review.turf_id == turf.turf_id %}
+                                {% if review.user_id == user_id %}
+                                    {% set should_open_review = true %}
+                                    <h1  id="sh{{ turf.turf_id }}" style="display: none;"> {{should_open_review}}</h1>
+                                      {% endif %}
+                                <p>{{ review.review}}</p>  <!-- Assuming review has a content field -->
+                                <hr>
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+                  </div>
+                    <div id="writereview{{turf.turf_id}}" class="writereviewf" style="display: none;">
+                      <form id="write_review{{turf.turf_id}}">
+                        <input type="hidden" value="{{turf.turf_id}} " name="turf">
+                        <input type="hidden" value="{{user_id}}"  name="user">
+                        <span></span>
+                        <textarea id="reviewarea" name="review" placeholder="write review" rows="4"></textarea>
+                        <input type="submit">
+                      </form>
+                    </div>
+              </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="pd">
+            <img src="static/3dd.jpg" alt="userimage" width="50%" id="pdimage">
+            <br>
+            <h1 style="color: aqua;">{{username}}</h1>
+            <h1 style="color:antiquewhite">{{email}}</h1>
+            <button class="buttoncl">booking</button>
+            <br>
+            <button class="buttoncl">payment</button>
+            <br>
+            <a class="buttoncl" href="{{ url_for('cart', user=user_id) }}">likes</a></div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Turf Booking. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='view.js') }}"></script>
+</body>
+</html>

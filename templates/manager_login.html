@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+   
+   
+</head>
+<body>
+    <div class="center">
+        <h1>login</h1>
+        <form action="/manager_login" method="POST">
+            <div class="txt_field">
+                <input type="text" class="form-control" id="username" name="username" required>
+                <span></span>
+                <label for="username">Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" class="form-control" id="password" name="password" required>
+                <span></span>
+                <label for="password">Password</label>
+            </div>
+            <div class="pass">forget password</div>
+            <input type="submit" value="manager_login">
+            <a href="/manager_register">Register here</a>
+            </div>
+        </form>
+    </div>
+</body>
